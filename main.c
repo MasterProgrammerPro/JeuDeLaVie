@@ -19,7 +19,7 @@ int main (int argc, char ** argv) {
 	
 	debut_jeu(&g, &gc);
 
-	//libere_grille(&g);
-	//libere_grille(&gc);
+	libere_grille(&g);
+	libere_grille(&gc);
 	return 0;
 }

@@ -9,7 +9,6 @@ void init_grille_from_file (char * filename, grille* g){
 	
 	fscanf(pfile, "%d", & l);
 	fscanf(pfile, "%d", & c);
-	printf("%d\n",l); printf("%d\n",c);
 	alloue_grille(l,c,g);
 	
 	fscanf(pfile, "%d", & vivantes);
@@ -48,4 +47,13 @@ void alloue_grille (int l, int c, grille* g)
 			set_morte(i,j,*g);
 		}
 	}
+}
+
+void libere_grille(grille* g)
+{
+	for(int i=0; i< g->nbl; i++)
+    {
+        free(g->cellules[i]);
+    }
+	free(g->cellules);
 }
