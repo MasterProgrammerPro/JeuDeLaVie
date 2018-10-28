@@ -1,5 +1,5 @@
 main : main.o grille.o jeu.o io.o
-	gcc -o main main.o grille.o jeu.o io.o
+	gcc -o main main.o grille.o jeu.o io.o -lm
 
 main.o : main.c
 	gcc -c main.c

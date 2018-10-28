@@ -12,7 +12,7 @@ typedef struct {int nbl; int nbc; int** cellules;} grille;
 void alloue_grille (int l, int c, grille* g);
 
 // libère une grille
-void libere_grille (grille* g);
+//void libere_grille (grille* g);
 
 // alloue et initalise la grille g à partir d'un fichier
 void init_grille_from_file (char * filename, grille* g);
