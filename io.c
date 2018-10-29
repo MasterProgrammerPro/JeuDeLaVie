@@ -36,6 +36,17 @@ void debut_jeu(grille *g, grille *gc){
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
+			case 'n' :
+			{//touche "n" pour d'entree un nouvelle grille(max 30 characters)
+				char n[30];
+				printf("fichier grille :");
+				scanf("%s",n);
+				init_grille_from_file(n,g);
+				alloue_grille (g->nbl, g->nbc, gc);
+				affiche_grille(*g);
+				debut_jeu(g, gc);
+			}
+			
 			case '\n' : 
 			{ // touche "entree" pour évoluer
 				evolue(g,gc);
