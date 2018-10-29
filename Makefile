@@ -17,4 +17,4 @@ clean :
 	rm *.o main
 	
 dist :
-	tar -c main.c grille.c grille.h jeu.c jeu.h io.c io.h  Makefile -Jf archive.tar.xz
+	tar -c main.c grille.c grille.h jeu.c jeu.h io.c io.h  Makefile Doxyfile -Jf archive.tar.xz
