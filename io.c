@@ -32,7 +32,8 @@ void efface_grille (grille g){
 }
 
 void debut_jeu(grille *g, grille *gc){
-	char c = getchar(); 
+	char c = getchar();
+	int k=0;
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
@@ -51,7 +52,9 @@ void debut_jeu(grille *g, grille *gc){
 			{ // touche "entree" pour évoluer
 				evolue(g,gc);
 				efface_grille(*g);
+				printf("%d",k);
 				affiche_grille(*g);
+				k++;
 				break;
 			}
 			default : 
