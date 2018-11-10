@@ -10,7 +10,7 @@ void affiche_trait (int c){
 void affiche_ligne (int c, int* ligne){
 	int i;
 	for (i=0; i<c; ++i) 
-		if (ligne[i] == 0 ) printf ("|   "); else printf ("| O ");
+		if (ligne[i] == 0 ) printf ("|   "); else printf ("| %d ", ligne[i]-1);
 	printf("|\n");
 	return;
 }
@@ -33,7 +33,7 @@ void efface_grille (grille g){
 
 void debut_jeu(grille *g, grille *gc){
 	char c = getchar();
-	int k=1, s = 1;
+	int k=1, s = 1, v = 0;
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
@@ -51,7 +51,7 @@ void debut_jeu(grille *g, grille *gc){
 			
 			case '\n' : 
 			{ // touche "entree" pour évoluer
-				evolue(g,gc,s);
+				evolue(g,gc,s,v);
 				efface_grille(*g);
 				printf("temps d'évolution: %d               ",k);
 				affiche_grille(*g);
@@ -61,7 +61,12 @@ void debut_jeu(grille *g, grille *gc){
 			}
 			case 'c' :
 			{
-				s = 1-s;
+				s = 1 - s;
+				break;
+			}
+			case 'v' :
+			{
+				v = 1 - v;
 				break;
 			}
 			default : 
