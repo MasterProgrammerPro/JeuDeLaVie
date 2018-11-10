@@ -23,17 +23,17 @@ void affiche_grille (grille g){
 		affiche_ligne(c, g.cellules[i]);
 		affiche_trait(c);
 	}	
-	printf("\n"); 
+	//printf("\n"); 
 	return;
 }
 
 void efface_grille (grille g){
-	printf("\n\e[%dA",g.nbl*2 + 5); 
+	printf("\n\e[%dA",g.nbl*2 + 4); 
 }
 
 void debut_jeu(grille *g, grille *gc){
 	char c = getchar();
-	int k=0;
+	int k=1, s = 1;
 	while (c != 'q') // touche 'q' pour quitter
 	{ 
 		switch (c) {
@@ -45,16 +45,23 @@ void debut_jeu(grille *g, grille *gc){
 				init_grille_from_file(n,g);
 				alloue_grille (g->nbl, g->nbc, gc);
 				affiche_grille(*g);
-				debut_jeu(g, gc);
+				k = 1;
+				break;
 			}
 			
 			case '\n' : 
 			{ // touche "entree" pour évoluer
-				evolue(g,gc);
+				evolue(g,gc,s);
 				efface_grille(*g);
-				printf("%d",k);
+				printf("temps d'évolution: %d               ",k);
 				affiche_grille(*g);
+				printf("                                                 \r");
 				k++;
+				break;
+			}
+			case 'c' :
+			{
+				s = 1-s;
 				break;
 			}
 			default : 
