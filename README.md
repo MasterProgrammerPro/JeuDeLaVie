@@ -46,4 +46,4 @@ Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire dé
 
 * v7.0 : Version avec le touche 'r'
 
-* v8.0 : Version finale
+* v8.0 : version finale
