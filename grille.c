@@ -57,3 +57,17 @@ void libere_grille(grille* g)
     }
 	free(g->cellules);
 }
+
+void reset_age(grille g)
+{
+	for(int i = 0; i < g.nbl; i++)
+	{
+		for(int j =0; j < g.nbl; j++)
+		{
+			if (est_vivante(i,j,g))
+			{	
+				g.cellules[i][j] = 1;
+			}
+		}
+	}
+}

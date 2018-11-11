@@ -24,11 +24,14 @@ static inline void set_morte(int i, int j, grille g){g.cellules[i][j] = 0;}
 // teste si la cellule (i,j) de la grille g est vivante
 static inline int est_vivante(int i, int j, grille g){return g.cellules[i][j] != 0 ;}
 
-//
+//incemente age d'une cellule
 static inline void vieillir(int i, int j, grille g){g.cellules[i][j]++;}
 
-//
+//age d'une cellule
 static inline int age(int i,int j, grille g){return g.cellules[i][j] - 1;}
+
+//reset ages de toutes les cellules
+void reset_age(grille g);
 
 // recopie gs dans gd (sans allocation)
 void copie_grille (grille gs, grille gd);

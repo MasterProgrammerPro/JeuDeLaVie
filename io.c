@@ -48,7 +48,6 @@ void debut_jeu(grille *g, grille *gc){
 				k = 1;
 				break;
 			}
-			
 			case '\n' : 
 			{ // touche "entree" pour évoluer
 				evolue(g,gc,s,v);
@@ -60,13 +59,18 @@ void debut_jeu(grille *g, grille *gc){
 				break;
 			}
 			case 'c' :
-			{
+			{ //touche "c" pour changer entre cyclique et non cyclique
 				s = 1 - s;
 				break;
 			}
 			case 'v' :
-			{
+			{ // touche "v" pour changer activer/desactiver vieillessement
 				v = 1 - v;
+				break;
+			}
+			case 'r' :
+			{// touche "r" pour reset des ages
+				reset_age(*g);
 				break;
 			}
 			default : 
