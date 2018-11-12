@@ -12,7 +12,7 @@ Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire dé
 
 #### Comment Executer :
 
-* executer : ./main < fichier grille >
+* executer : main < fichier grille >
 * supprimer objects : make clean
 * produire un archive : make dist
 
