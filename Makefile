@@ -1,20 +1,29 @@
+CFLAGS = -g -Wall
+IFLAGS = -Iinclude
+OPATH = obj/
+CPATH = src/
+
+vpath %.h include
+vpath %.c src
+vpath %.o obj
+vpath main bin
+
+
 main : main.o grille.o jeu.o io.o
-	gcc -g -o main main.o grille.o jeu.o io.o -lm
+	gcc $(CFLAGS) -o main $(OPATH)main.o $(OPATH)grille.o $(OPATH)jeu.o $(OPATH)io.o
+	mv $@ bin/
 
 main.o : main.c
-	gcc -g -c main.c
-
 grille.o : grille.c grille.h
-	gcc -g -c grille.c
-
 jeu.o : jeu.c jeu.h grille.h
-	gcc -g -c jeu.c
-
 io.o : io.c io.h jeu.h grille.h
-	gcc -g -c io.c
+
+%.o : 
+	gcc $(CFLAGS) -c $< $(IFLAGS)
+	mv $@ $(OPATH)
 
 clean : 
-	rm *.o main
+	rm obj/* bin/*
 	
 dist :
-	tar -c main.c grille.c grille.h jeu.c jeu.h io.c io.h  Makefile Doxyfile -Jf archive.tar.xz
+	tar -c src include doc  Makefile -Jf archive.tar.xz
