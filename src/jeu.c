@@ -1,5 +1,20 @@
+/** 
+ * \file jeu.c 
+ * code pour le jeu
+ * \author SENOL Mustafa
+ */
+
 #include "jeu.h"
 
+/**
+ * compte le nombre de voisins vivants de la cellule (i,j)
+ * les bords sont cycliques.
+ * \relatesalso grille
+ * \param i int
+ * \param j int
+ * \param g grille
+ * \returns le nombre de voisins vivants de la cellule (i,j)
+ */
 int compte_voisins_vivants_cyclique (int i, int j, grille g){
 	int v = 0, l=g.nbl, c = g.nbc;
 	v+= est_vivante(modulo(i-1,l),modulo(j-1,c),g);
@@ -14,6 +29,15 @@ int compte_voisins_vivants_cyclique (int i, int j, grille g){
 	return v; 
 }
 
+/**
+ * compte le nombre de voisins vivants de la cellule (i,j)
+ * les bords sont cycliques.
+ * \relatesalso grille
+ * \param i int
+ * \param j int
+ * \param g grille
+ * \returns le nombre de voisins vivants de la cellule (i,j)
+ */
 int compte_voisins_vivants_non_cyclique (int i, int j, grille g)
 {
 	int v = 0, l=g.nbl, c = g.nbc;
@@ -46,7 +70,15 @@ int compte_voisins_vivants_non_cyclique (int i, int j, grille g)
 	return v;
 }
 
-
+/**
+ * fait évoluer la grille g d'un pas de temps
+ * \relatesalso grille
+ * \param g grille*
+ * \param gc grille*
+ * \param s int
+ * \param k int
+ * \returns nothing
+ */
 void evolue (grille *g, grille *gc, int s, int k ){
 	copie_grille (*g,*gc); // copie temporaire de la grille
 	int i,j,l=g->nbl, c = g->nbc,v;
@@ -87,4 +119,3 @@ void evolue (grille *g, grille *gc, int s, int k ){
 	}
 	return;
 }
-

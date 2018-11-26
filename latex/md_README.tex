@@ -1,0 +1,47 @@
+Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire défini en 1970 par le mathématicien anglais John Conway. Il se compose d’un univers dans lequel évoluent des cellules vivantes suivant des règles d’évolution précises.
+
+\paragraph*{Règles \+:}
+
+
+\begin{DoxyItemize}
+\item Une cellule morte au temps t devient vivante au temps t + 1 si et seulement si elle a exactement 3 cellules vivantes dans son voisinage.
+\item Une cellule vivante au temps t reste vivante au temps t + 1 si et seulement si elle a exactement 2 ou 3 cellules vivantes dans son voisinage, sinon elle meurt.
+\item Le voisinage utilisé est le 8-\/voisinage \+: pour une cellule donnée, ses voisines sont les 8 cellules qui l’entourent.
+\end{DoxyItemize}
+
+\paragraph*{Comment Executer \+:}
+
+
+\begin{DoxyItemize}
+\item executer \+: main $<$ fichier grille $>$
+\item supprimer objects \+: make clean
+\item produire un archive \+: make dist
+\end{DoxyItemize}
+
+\paragraph*{Les Touches \+:}
+
+
+\begin{DoxyItemize}
+\item entree \+: pour évoluer
+\item n \+: pour d\textquotesingle{}entree un nouvelle grille (max 30 characters)
+\item c \+: pour changer entre cyclique et non cyclique(cyclique par défaut)
+\item v \+: pour changer activer/desactiver vieillessement (desactive par défaut)
+\item r \+: pour reset des ages
+\end{DoxyItemize}
+
+\paragraph*{Versions \+:}
+
+
+\begin{DoxyItemize}
+\item v0.\+0 \+: Version initiale
+\item v0.\+1 \+: Tester s\textquotesingle{}il compile
+\item v1.\+0 \+: Version avec alloue\+\_\+grille
+\item v1.\+1 \+: Version avec libere\+\_\+grille, le premiere version qu\textquotesingle{}on peut simuler la jeu de la vie
+\item v2.\+0 \+: Version avec la touche \textquotesingle{}n\textquotesingle{}
+\item v3.\+0 \+: Version avec Doxyfile
+\item v4.\+0 \+: Version avec compteur
+\item v5.\+0 \+: Version avec le touche \textquotesingle{}c\textquotesingle{}
+\item v6.\+0 \+: Version avec le touche \textquotesingle{}v\textquotesingle{}
+\item v7.\+0 \+: Version avec le touche \textquotesingle{}r\textquotesingle{}
+\item v8.\+0 \+: version finale 
+\end{DoxyItemize}

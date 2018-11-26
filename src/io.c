@@ -1,5 +1,16 @@
+/** 
+ * \file io.c 
+ * code pour affichage
+ * \author SENOL Mustafa
+ */
+
 #include "io.h"
 
+/**
+ * alloue et initalise la grille g à partir d'un fichier
+ * \param *g int
+ * \returns nothing
+ */
 void affiche_trait (int c){
 	int i;
 	for (i=0; i<c; ++i) printf ("|---");
@@ -7,6 +18,12 @@ void affiche_trait (int c){
 	return;
 }
 
+/**
+ * affichage d'une ligne de la grille
+ * \param int* ligne
+ * \param c int
+ * \returns nothing
+ */
 void affiche_ligne (int c, int* ligne){
 	int i;
 	for (i=0; i<c; ++i) 
@@ -15,6 +32,11 @@ void affiche_ligne (int c, int* ligne){
 	return;
 }
 
+/**
+ * affichage d'une grille
+ * \param g grille
+ * \returns nothing
+ */
 void affiche_grille (grille g){
 	int i, l=g.nbl, c=g.nbc;
 	printf("\n");
@@ -27,10 +49,23 @@ void affiche_grille (grille g){
 	return;
 }
 
+/**
+ * effacement d'une grille
+ * \relatesalso grille
+ * \param g grille
+ * \returns nothing
+ */
 void efface_grille (grille g){
 	printf("\n\e[%dA",g.nbl*2 + 4); 
 }
 
+/**
+ * debute le jeu
+ * \relatesalso grille
+ * \param g grille*
+ * \param gc grille*
+ * \returns nothing
+ */
 void debut_jeu(grille *g, grille *gc){
 	char c = getchar();
 	int k=1, s = 1, v = 0;
