@@ -83,16 +83,6 @@ void debut_jeu(grille *g, grille *gc){
 				k = 1;
 				break;
 			}
-			case '\n' : 
-			{ // touche "entree" pour évoluer
-				evolue(g,gc,s,v);
-				efface_grille(*g);
-				printf("temps d'évolution: %d               ",k);
-				affiche_grille(*g);
-				printf("                                                 \r");
-				k++;
-				break;
-			}
 			case 'c' :
 			{ //touche "c" pour changer entre cyclique et non cyclique
 				s = 1 - s;
@@ -106,6 +96,16 @@ void debut_jeu(grille *g, grille *gc){
 			case 'r' :
 			{// touche "r" pour reset des ages
 				reset_age(*g);
+				break;
+			}
+			case '\n' : 
+			{ // touche "entree" pour évoluer
+				evolue(g,gc,s,v);
+				efface_grille(*g);
+				printf("temps d'évolution: %d               ",k);
+				affiche_grille(*g);
+				printf("                                                 \r");
+				k++;
 				break;
 			}
 			default : 
