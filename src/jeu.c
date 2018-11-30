@@ -119,3 +119,110 @@ void evolue (grille *g, grille *gc, int s, int k ){
 	}
 	return;
 }
+
+int oscillente(grille g,int s, int v)
+{
+	int k = 1;	
+	grille g1, g2;
+	alloue_grille(g.nbl,g.nbc,&g1);
+	alloue_grille(g.nbl,g.nbc,&g2);
+	copie_grille(g,g1);
+	copie_grille(g,g2);
+	evolue(&g,&g1,s,v);
+	while(equal(g,g2)==0 && k<1000)
+	{
+		evolue(&g,&g1,s,v);
+		k++;
+	}
+	return k;
+}
+
+int oscillenteau(grille g,int s, int v)
+{
+	int k = 1,r=0;	
+	grille g1, g2;
+	alloue_grille(g.nbl,g.nbc,&g1);
+	alloue_grille(g.nbl,g.nbc,&g2);
+	copie_grille(g,g1);
+	copie_grille(g,g2);
+	evolue(&g,&g1,s,v);
+	while(equal(g,g2)==0 && k<1000)
+	{
+		evolue(&g,&g1,s,v);
+		k++;
+	}
+	if(k==1000 || k==1)
+	{
+		r = 0;
+	}
+	else
+	{
+		r = 1;
+	}
+	return r;
+}
+
+void oscillentedeux(grille g, int s, int v)
+{
+	int k =0,r=0;
+	grille g1, g2;
+	alloue_grille(g.nbl,g.nbc,&g1);
+	alloue_grille(g.nbl,g.nbc,&g2);
+	copie_grille(g,g1);
+	copie_grille(g,g2);
+	evolue(&g,&g1,s,v);
+	while (k<1000 && r==0)
+	{
+		r = oscillenteau(g1,s,v);
+		k++;
+	}
+	if(r==0)
+	{
+		printf("jamais oscillente                                  \r");
+	}
+	else if(k != 1)
+	{
+		printf("va etre oscillente apres %d pas                    \r",k);
+	}
+	else
+	{
+		printf("oscillente et son period est %d",oscillente(g,s,v));
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

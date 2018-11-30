@@ -116,3 +116,128 @@ void reset_age(grille g)
 		}
 	}
 }
+
+int equal(grille g, grille g1)
+{
+	int r = 1;
+	if(g.nbc != g1.nbc || g.nbl != g1.nbl)
+	{
+		r = 0;
+	}
+	for(int i = 0; i<g.nbc && r==1; i++)
+	{
+		for(int j = 0; j<g.nbl && r==1; j++)
+		{
+			if(g.cellules[j][i] != g1.cellules[j][i])
+			{
+				r = 0;
+			}
+		}
+	}
+	return r;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+void paintau(cairo_surface_t *surface, grille g)
+{	
+	
+	
+	// create cairo mask
+	cairo_t *cr;
+	cr=cairo_create(surface);
+
+	// background
+	cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+	cairo_paint(cr);
+
+	// filled rectangle
+	for(int i=0; i<g.nbl; i++)
+	{
+		for(int j=0; j<g.nbc; j++)
+		{	
+			cairo_rectangle(cr,j*52+30,i*52+30,50,50);
+			if (g.cellules[i][j] == -1)
+			{
+				cairo_set_source_rgb (cr, 1.0, 0.0, 0.0);
+				cairo_fill(cr);
+			}
+			else if (g.cellules[i][j] == 0)
+			{
+				cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
+				cairo_fill(cr);
+			}
+			else
+			{
+				cairo_set_source_rgb (cr, 0.0, 1.0, 0.0);
+				cairo_fill(cr);
+			}
+		}
+	}
+	cairo_destroy(cr); // destroy cairo mask
+}
+
+
+
+
+int paint(grille g){
+	// X11 display
+	Display *dpy;
+	Window rootwin;
+	Window win;
+	XEvent e;
+	int scr;
+	
+	// init the display
+	if(!(dpy=XOpenDisplay(NULL))) {
+		fprintf(stderr, "ERROR: Could not open display\n");
+		exit(1);
+	}
+
+	scr=DefaultScreen(dpy);
+	rootwin=RootWindow(dpy, scr);
+
+	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, SIZEX, SIZEY, 0, 
+			BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+
+	XStoreName(dpy, win, "jeu de la vie");
+	XSelectInput(dpy, win, ExposureMask|ButtonPressMask|KeyPressMask);
+	XMapWindow(dpy, win);
+	
+	// create cairo surface
+	cairo_surface_t *cs; 
+	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), SIZEX, SIZEY);
+
+	// run the event loop
+	while(1) {
+		XNextEvent(dpy, &e);
+		if(e.type==Expose && e.xexpose.count<1) {
+			paintau(cs,g);
+		} else if(e.xbutton.button==1) break;
+	}
+
+	cairo_surface_destroy(cs); // destroy cairo surface
+	XCloseDisplay(dpy); // close the display
+	return 0;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
