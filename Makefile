@@ -2,6 +2,9 @@ CFLAGS = -g -Wall
 IFLAGS = -Iinclude
 OPATH = obj/
 CPATH = src/
+CPPFLAGS += -Iinclude -I/usr/include/cairo
+LDFLAGS += -lcairo -lm -lX11
+
 
 vpath %.h include
 vpath %.c src
@@ -10,7 +13,7 @@ vpath main bin
 
 
 main : main.o libjeu.a io.o
-	gcc $(CFLAGS) -o main $(OPATH)main.o $(OPATH)io.o -L./lib/ -ljeu
+	gcc $(CFLAGS) -o main $(OPATH)main.o $(OPATH)io.o -L./lib/ -ljeu $(LDFLAGS)
 	mv $@ bin/
 
 main.o : main.c
@@ -20,8 +23,9 @@ io.o : io.c io.h jeu.h grille.h
 
 
 
+
 %.o : 
-	gcc $(CFLAGS) -c $< $(IFLAGS)
+	gcc $(CFLAGS) -c $< $(CPPFLAGS) $(LDFFLAGS)
 	mv $@ $(OPATH)
 
 libjeu.a : grille.o jeu.o

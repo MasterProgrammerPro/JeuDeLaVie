@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <assert.h>
 
+
 /**
  * \typedef grille
  * déclaration du type grille
@@ -56,5 +57,7 @@ void reset_age(grille g);
 
 //recopie gs dans gd (sans allocation)
 void copie_grille (grille gs, grille gd);
+
+int equal(grille g, grille g1);
 
 #endif

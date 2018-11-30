@@ -27,4 +27,10 @@ int compte_voisins_vivants_non_cyclique (int i, int j, grille g);
 //fait évoluer la grille g d'un pas de temps
 void evolue (grille *g, grille *gc, int s, int k);
 
+int oscillente(grille g,int s, int v);
+
+int oscillenteau(grille g,int s, int v);
+
+void oscillentedeux(grille g, int s, int v);
+
 #endif
