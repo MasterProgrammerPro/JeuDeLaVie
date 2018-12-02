@@ -1,0 +1,195 @@
+\hypertarget{jeu_8c}{}\section{src/jeu.c File Reference}
+\label{jeu_8c}\index{src/jeu.\+c@{src/jeu.\+c}}
+{\ttfamily \#include \char`\"{}jeu.\+h\char`\"{}}\newline
+Include dependency graph for jeu.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{jeu_8c_a919a35926d94b71717909ecc50233f26}{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique} (int i, int j, \hyperlink{structgrille}{grille} g)
+\item 
+int \hyperlink{jeu_8c_a2e8fdd206d197391527920bbbc137eef}{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique} (int i, int j, \hyperlink{structgrille}{grille} g)
+\item 
+void \hyperlink{jeu_8c_a75150122a9bbb1f4db562aebf13ad50a}{evolue} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc, int s, int k)
+\item 
+int \hyperlink{jeu_8c_a0d4f8f37ee19771ae5cbc147b5f2baef}{oscillente} (\hyperlink{structgrille}{grille} g, int s, int v)
+\item 
+int \hyperlink{jeu_8c_a3b7f1d4211cd66585c04eabb73eb4776}{oscillenteau} (\hyperlink{structgrille}{grille} g, int s, int v)
+\item 
+void \hyperlink{jeu_8c_a87186e2d8c4990d567d5c38de8aa1dbd}{oscillentedeux} (\hyperlink{structgrille}{grille} g, int s, int v)
+\item 
+int \hyperlink{jeu_8c_af67bb4e4353b42c46e349915cc5fb606}{oscillente\+Paint} (\hyperlink{structgrille}{grille} g, int s, int v)
+\item 
+int \hyperlink{jeu_8c_a932f724841fa6c91751acaee6d740930}{oscillentetrois} (\hyperlink{structgrille}{grille} g, int s, int v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+code pour le jeu \begin{DoxyAuthor}{Author}
+S\+E\+N\+OL Mustafa 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{jeu_8c_a919a35926d94b71717909ecc50233f26}\label{jeu_8c_a919a35926d94b71717909ecc50233f26}} 
+\index{jeu.\+c@{jeu.\+c}!compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique()}{compte\_voisins\_vivants\_cyclique()}}
+{\footnotesize\ttfamily int compte\+\_\+voisins\+\_\+vivants\+\_\+cyclique (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+compte le nombre de voisins vivants de la cellule (i,j) les bords sont cycliques.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & int \\
+\hline
+{\em j} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le nombre de voisins vivants de la cellule (i,j) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a2e8fdd206d197391527920bbbc137eef}\label{jeu_8c_a2e8fdd206d197391527920bbbc137eef}} 
+\index{jeu.\+c@{jeu.\+c}!compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique}}
+\index{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique@{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique()}{compte\_voisins\_vivants\_non\_cyclique()}}
+{\footnotesize\ttfamily int compte\+\_\+voisins\+\_\+vivants\+\_\+non\+\_\+cyclique (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+compte le nombre de voisins vivants de la cellule (i,j) les bords sont cycliques.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & int \\
+\hline
+{\em j} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le nombre de voisins vivants de la cellule (i,j) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a75150122a9bbb1f4db562aebf13ad50a}\label{jeu_8c_a75150122a9bbb1f4db562aebf13ad50a}} 
+\index{jeu.\+c@{jeu.\+c}!evolue@{evolue}}
+\index{evolue@{evolue}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{evolue()}{evolue()}}
+{\footnotesize\ttfamily void evolue (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille} $\ast$}]{g,  }\item[{\hyperlink{structgrille}{grille} $\ast$}]{gc,  }\item[{int}]{s,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+fait évoluer la grille g d\textquotesingle{}un pas de temps
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille$\ast$ \\
+\hline
+{\em gc} & grille$\ast$ \\
+\hline
+{\em s} & int \\
+\hline
+{\em k} & int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a0d4f8f37ee19771ae5cbc147b5f2baef}\label{jeu_8c_a0d4f8f37ee19771ae5cbc147b5f2baef}} 
+\index{jeu.\+c@{jeu.\+c}!oscillente@{oscillente}}
+\index{oscillente@{oscillente}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{oscillente()}{oscillente()}}
+{\footnotesize\ttfamily int oscillente (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{s,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+calcul de periode d\textquotesingle{}une colonie oscillente
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+la periode 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a3b7f1d4211cd66585c04eabb73eb4776}\label{jeu_8c_a3b7f1d4211cd66585c04eabb73eb4776}} 
+\index{jeu.\+c@{jeu.\+c}!oscillenteau@{oscillenteau}}
+\index{oscillenteau@{oscillenteau}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{oscillenteau()}{oscillenteau()}}
+{\footnotesize\ttfamily int oscillenteau (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{s,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+calcul si un colonie est oscillente ou pas
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si pas oscillente, 1 si oscillente 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a87186e2d8c4990d567d5c38de8aa1dbd}\label{jeu_8c_a87186e2d8c4990d567d5c38de8aa1dbd}} 
+\index{jeu.\+c@{jeu.\+c}!oscillentedeux@{oscillentedeux}}
+\index{oscillentedeux@{oscillentedeux}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{oscillentedeux()}{oscillentedeux()}}
+{\footnotesize\ttfamily void oscillentedeux (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{s,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+affichage si un colonie est oscillente ou pas
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_af67bb4e4353b42c46e349915cc5fb606}\label{jeu_8c_af67bb4e4353b42c46e349915cc5fb606}} 
+\index{jeu.\+c@{jeu.\+c}!oscillente\+Paint@{oscillente\+Paint}}
+\index{oscillente\+Paint@{oscillente\+Paint}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{oscillente\+Paint()}{oscillentePaint()}}
+{\footnotesize\ttfamily int oscillente\+Paint (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{s,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+calcul la type de colonie
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si la colonie n\textquotesingle{}est pas oscillente,1 si il oscille jamais et 2 si il oscille 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jeu_8c_a932f724841fa6c91751acaee6d740930}\label{jeu_8c_a932f724841fa6c91751acaee6d740930}} 
+\index{jeu.\+c@{jeu.\+c}!oscillentetrois@{oscillentetrois}}
+\index{oscillentetrois@{oscillentetrois}!jeu.\+c@{jeu.\+c}}
+\subsubsection{\texorpdfstring{oscillentetrois()}{oscillentetrois()}}
+{\footnotesize\ttfamily int oscillentetrois (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{s,  }\item[{int}]{v }\end{DoxyParamCaption})}
+
+il calcul quand la colonie va etre oscillante
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+dans combien pas la colonie va etre oscillante 
+\end{DoxyReturn}

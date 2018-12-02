@@ -1,0 +1,157 @@
+\hypertarget{io_8c}{}\section{src/io.c File Reference}
+\label{io_8c}\index{src/io.\+c@{src/io.\+c}}
+{\ttfamily \#include \char`\"{}io.\+h\char`\"{}}\newline
+Include dependency graph for io.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{io_8c_a634cf584c380ce221d5d4199f3e813bd}{affiche\+\_\+trait} (int c)
+\item 
+void \hyperlink{io_8c_a3f3ff78e56fcf21a932ff73b70635554}{affiche\+\_\+ligne} (int c, int $\ast$ligne)
+\item 
+void \hyperlink{io_8c_a90cb8ec05374b46d9995705ed4954f34}{affiche\+\_\+grille} (\hyperlink{structgrille}{grille} g)
+\item 
+void \hyperlink{io_8c_ab36a6f8957cd3e682119007836ce6ad5}{efface\+\_\+grille} (\hyperlink{structgrille}{grille} g)
+\item 
+void \hyperlink{io_8c_a88493b3c55828670e47150a95ed7db5b}{debut\+\_\+jeu} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc)
+\item 
+void \hyperlink{io_8c_ae3ed00766fde31afac2a91e473f02ac5}{paint} (cairo\+\_\+surface\+\_\+t $\ast$surface, \hyperlink{structgrille}{grille} g, int c, int v, int o)
+\item 
+void \hyperlink{io_8c_aa612c5d2c307343e977b7097b81be3e7}{paint\+\_\+jeu} (\hyperlink{structgrille}{grille} $\ast$g, \hyperlink{structgrille}{grille} $\ast$gc)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{io_8c_ac85a28512daa89028cd4dd0024a04ab1}\label{io_8c_ac85a28512daa89028cd4dd0024a04ab1}} 
+int {\bfseries temps} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+code pour affichage \begin{DoxyAuthor}{Author}
+S\+E\+N\+OL Mustafa 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{io_8c_a90cb8ec05374b46d9995705ed4954f34}\label{io_8c_a90cb8ec05374b46d9995705ed4954f34}} 
+\index{io.\+c@{io.\+c}!affiche\+\_\+grille@{affiche\+\_\+grille}}
+\index{affiche\+\_\+grille@{affiche\+\_\+grille}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{affiche\+\_\+grille()}{affiche\_grille()}}
+{\footnotesize\ttfamily void affiche\+\_\+grille (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+affichage d\textquotesingle{}une grille 
+\begin{DoxyParams}{Parameters}
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_a3f3ff78e56fcf21a932ff73b70635554}\label{io_8c_a3f3ff78e56fcf21a932ff73b70635554}} 
+\index{io.\+c@{io.\+c}!affiche\+\_\+ligne@{affiche\+\_\+ligne}}
+\index{affiche\+\_\+ligne@{affiche\+\_\+ligne}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{affiche\+\_\+ligne()}{affiche\_ligne()}}
+{\footnotesize\ttfamily void affiche\+\_\+ligne (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int $\ast$}]{ligne }\end{DoxyParamCaption})}
+
+affichage d\textquotesingle{}une ligne de la grille 
+\begin{DoxyParams}{Parameters}
+{\em int$\ast$} & ligne \\
+\hline
+{\em c} & int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_a634cf584c380ce221d5d4199f3e813bd}\label{io_8c_a634cf584c380ce221d5d4199f3e813bd}} 
+\index{io.\+c@{io.\+c}!affiche\+\_\+trait@{affiche\+\_\+trait}}
+\index{affiche\+\_\+trait@{affiche\+\_\+trait}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{affiche\+\_\+trait()}{affiche\_trait()}}
+{\footnotesize\ttfamily void affiche\+\_\+trait (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+alloue et initalise la grille g à partir d\textquotesingle{}un fichier 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$g} & int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_a88493b3c55828670e47150a95ed7db5b}\label{io_8c_a88493b3c55828670e47150a95ed7db5b}} 
+\index{io.\+c@{io.\+c}!debut\+\_\+jeu@{debut\+\_\+jeu}}
+\index{debut\+\_\+jeu@{debut\+\_\+jeu}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{debut\+\_\+jeu()}{debut\_jeu()}}
+{\footnotesize\ttfamily void debut\+\_\+jeu (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille} $\ast$}]{g,  }\item[{\hyperlink{structgrille}{grille} $\ast$}]{gc }\end{DoxyParamCaption})}
+
+debute le jeu
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille$\ast$ \\
+\hline
+{\em gc} & grille$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_ab36a6f8957cd3e682119007836ce6ad5}\label{io_8c_ab36a6f8957cd3e682119007836ce6ad5}} 
+\index{io.\+c@{io.\+c}!efface\+\_\+grille@{efface\+\_\+grille}}
+\index{efface\+\_\+grille@{efface\+\_\+grille}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{efface\+\_\+grille()}{efface\_grille()}}
+{\footnotesize\ttfamily void efface\+\_\+grille (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille}}]{g }\end{DoxyParamCaption})}
+
+effacement d\textquotesingle{}une grille
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_ae3ed00766fde31afac2a91e473f02ac5}\label{io_8c_ae3ed00766fde31afac2a91e473f02ac5}} 
+\index{io.\+c@{io.\+c}!paint@{paint}}
+\index{paint@{paint}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{paint()}{paint()}}
+{\footnotesize\ttfamily void paint (\begin{DoxyParamCaption}\item[{cairo\+\_\+surface\+\_\+t $\ast$}]{surface,  }\item[{\hyperlink{structgrille}{grille}}]{g,  }\item[{int}]{c,  }\item[{int}]{v,  }\item[{int}]{o }\end{DoxyParamCaption})}
+
+affichage graphique
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille \\
+\hline
+{\em surface} & cairo\+\_\+surface\+\_\+t$\ast$ \\
+\hline
+{\em c} & int \\
+\hline
+{\em v} & int \\
+\hline
+{\em o} & int \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{io_8c_aa612c5d2c307343e977b7097b81be3e7}\label{io_8c_aa612c5d2c307343e977b7097b81be3e7}} 
+\index{io.\+c@{io.\+c}!paint\+\_\+jeu@{paint\+\_\+jeu}}
+\index{paint\+\_\+jeu@{paint\+\_\+jeu}!io.\+c@{io.\+c}}
+\subsubsection{\texorpdfstring{paint\+\_\+jeu()}{paint\_jeu()}}
+{\footnotesize\ttfamily void paint\+\_\+jeu (\begin{DoxyParamCaption}\item[{\hyperlink{structgrille}{grille} $\ast$}]{g,  }\item[{\hyperlink{structgrille}{grille} $\ast$}]{gc }\end{DoxyParamCaption})}
+
+debut jeu en graphique
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & grille$\ast$ \\
+\hline
+{\em gc} & grille$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
