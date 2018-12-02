@@ -15,6 +15,7 @@ Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire dé
 * executer : main < fichier grille >
 * supprimer objects : make clean
 * produire un archive : make dist
+* jouer version terminal : make MODE=TEXTE
 
 #### Les Touches :
 
@@ -23,6 +24,7 @@ Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire dé
 * c : pour changer entre cyclique et non cyclique(cyclique par défaut)
 * v : pour changer activer/desactiver vieillessement (desactive par défaut)
 * r : pour reset des ages
+* o : test si le colonie oscille ou pas
 
 #### Versions :
 
@@ -47,3 +49,5 @@ Le Jeu de la Vie (ou Game of Life) est, en réalité, un automate cellulaire dé
 * v7.0 : Version avec le touche 'r'
 
 * v8.0 : version finale
+
+* v9.0 : version finale finale

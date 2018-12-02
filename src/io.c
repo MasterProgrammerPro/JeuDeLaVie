@@ -140,8 +140,7 @@ void debut_jeu(grille *g, grille *gc){
  * \returns nothing
  */
 void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
-{	
-	int CSIZE = 52,i,j;
+{	 
 	char temp[100];
 	sprintf(temp,"%d",temps);
 	
@@ -156,11 +155,11 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
 	cairo_paint(cr);
 
 	// filled rectangle
-	for(i=0; i<g.nbl; i++)
+	for(int i=0; i<g.nbl; i++)
 	{
-		for(j=0; j<g.nbc; j++)
+		for(int j=0; j<g.nbc; j++)
 		{			
-			cairo_rectangle(cr,j*52+30,i*52+30,50,50);
+			cairo_rectangle(cr,j*CSIZE+30,i*CSIZE+30,CSIZE-1,CSIZE-1);
 			if (g.cellules[i][j] == -1)
 			{				
 				cairo_set_source_rgb (cr, 1.0, 0.0, 0.0);
@@ -178,22 +177,22 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
 				if(v==1)
 				{
 					sprintf(age,"%d",g.cellules[i][j]-1);
-					cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+					cairo_select_font_face(cr,"fantasy",CAIRO_FONT_SLANT_ITALIC, CAIRO_FONT_WEIGHT_NORMAL);
 					cairo_set_font_size(cr,0.5*CSIZE);
-					cairo_set_source_rgb(cr,1.0,0.0,0.0);
-					cairo_move_to(cr,j*52+49,i*52+62);
+					cairo_set_source_rgb(cr,0.0,0.0,0.0);
+					cairo_move_to(cr,j*CSIZE+45,i*CSIZE+56);
 					cairo_show_text(cr,age);
 				}
 			}
 		}
 	}
-	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+	cairo_select_font_face(cr,"monospace",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
 	cairo_set_font_size(cr,0.5*CSIZE);
 	cairo_set_source_rgb(cr,1.0,1.0,1.0);
-	cairo_move_to(cr,30,(g.nbl+1)*52);
+	cairo_move_to(cr,30,(g.nbl+2)*CSIZE);
 	cairo_show_text(cr,"temps passe : ");
 	cairo_show_text(cr,temp);
-	cairo_move_to(cr,30,(g.nbl+2)*52);
+	cairo_move_to(cr,30,(g.nbl+3)*CSIZE);
 	if(v==0)
 	{	
 		cairo_show_text(cr,"vieillissement pas active");
@@ -203,10 +202,10 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
 		cairo_show_text(cr,"vieillissement active");
 	}
 	
-	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+	cairo_select_font_face(cr,"monospace",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
 	cairo_set_font_size(cr,0.5*CSIZE);
 	cairo_set_source_rgb(cr,1.0,1.0,1.0);
-	cairo_move_to(cr,30,(g.nbl+3)*52);
+	cairo_move_to(cr,30,(g.nbl+4)*CSIZE);
 	
 	if(c==0)
 	{	
@@ -216,10 +215,10 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
 	{
 		cairo_show_text(cr,"cyclique");
 	}
-	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
-	cairo_set_font_size(cr,0.5*52);
+	cairo_select_font_face(cr,"monospace",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+	cairo_set_font_size(cr,0.5*CSIZE);
 	cairo_set_source_rgb(cr,1.0,1.0,1.0);
-	cairo_move_to(cr,30,(g.nbl+4)*52);
+	cairo_move_to(cr,30,(g.nbl+5)*CSIZE);
 	if(o == 1)
 	{
 		if(oscillentePaint(g,c,v)==0)
@@ -255,7 +254,7 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
  */
 void paint_jeu(grille *g, grille *gc)
 {
-	int s = 1, v = 0, o = 0;	
+	int s = 1, v = 0, o = 0;
 	// X11 display
 	Display *dpy;
 	Window rootwin;
@@ -277,7 +276,7 @@ void paint_jeu(grille *g, grille *gc)
 	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, SIZEX, SIZEY, 0, 
 			BlackPixel(dpy, scr), BlackPixel(dpy, scr));
 
-	XStoreName(dpy, win, "jeu de la vie");
+	XStoreName(dpy, win, "Game of Life");
 	XSelectInput(dpy, win, ExposureMask|ButtonPressMask|KeyPressMask);
 	XMapWindow(dpy, win);
 	
@@ -329,7 +328,6 @@ void paint_jeu(grille *g, grille *gc)
 			scanf("%s",n);
 			init_grille_from_file(n,g);
 			alloue_grille (g->nbl, g->nbc, gc);
-			
 			paint(cs,*g,s,v,o);
 		}
 		else if(e.xbutton.button==3) break;

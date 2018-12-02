@@ -15,6 +15,7 @@ ifeq (TEXTE,$(MODE))
 
 main : main.o libjeu.a io.o
 	gcc $(CFLAGS) -o main $(OPATH)main.o $(OPATH)io.o -L./lib/ -ljeu $(LDFLAGS)
+	mkdir -p bin/
 	mv $@ bin/
 
 main.o : main.c
@@ -25,16 +26,19 @@ io.o : io.c io.h jeu.h grille.h
 
 %.o : 
 	gcc $(CFLAGS) -c $< $(CPPFLAGS) $(LDFFLAGS)
+	mkdir -p obj/
 	mv $@ $(OPATH)
 
 libjeu.a : grille.o jeu.o
 	ar -crv libjeu.a $(OPATH)grille.o $(OPATH)jeu.o
 	ranlib libjeu.a
+	mkdir -p lib/
 	mv libjeu.a lib/
 else
 
 main : graph.o libjeu.a io.o	
 	gcc $(CFLAGS) -o main $(OPATH)graph.o $(OPATH)io.o -L./lib/ -ljeu $(LDFLAGS)
+	mkdir -p bin/
 	mv main bin/
 
 graph.o : graph.c
@@ -45,11 +49,13 @@ io.o : io.c io.h jeu.h grille.h
 
 %.o : 
 	gcc $(CFLAGS) -c $< $(CPPFLAGS) $(LDFFLAGS)
+	mkdir -p obj/
 	mv $@ $(OPATH)
 
 libjeu.a : grille.o jeu.o
 	ar -crv libjeu.a $(OPATH)grille.o $(OPATH)jeu.o
 	ranlib libjeu.a
+	mkdir -p lib/
 	mv libjeu.a lib/
 
 endif
@@ -59,5 +65,3 @@ clean :
 	
 dist :
 	tar -c src include doc  Makefile -Jf archive.tar.xz
-
-
