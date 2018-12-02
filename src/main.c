@@ -1,3 +1,9 @@
+/** 
+ * \file main.c 
+ * code principal pour version terminal
+ * \author SENOL Mustafa
+ */
+
 #include <stdio.h>
 
 #include "grille.h"

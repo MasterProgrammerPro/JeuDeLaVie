@@ -31,14 +31,6 @@ libjeu.a : grille.o jeu.o
 	ar -crv libjeu.a $(OPATH)grille.o $(OPATH)jeu.o
 	ranlib libjeu.a
 	mv libjeu.a lib/
-
-clean : 
-	rm obj/* bin/*
-	
-dist :
-	tar -c src include doc  Makefile -Jf archive.tar.xz
-
-
 else
 
 main : graph.o libjeu.a io.o	
@@ -60,11 +52,12 @@ libjeu.a : grille.o jeu.o
 	ranlib libjeu.a
 	mv libjeu.a lib/
 
+endif
+
 clean : 
 	rm obj/* bin/*
 	
 dist :
 	tar -c src include doc  Makefile -Jf archive.tar.xz
 
-endif
 

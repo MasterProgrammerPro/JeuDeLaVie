@@ -1,3 +1,9 @@
+/** 
+ * \file graph.c 
+ * code principal pour version graphique
+ * \author SENOL Mustafa
+ */
+
 #include <stdio.h>
 
 #include "grille.h"

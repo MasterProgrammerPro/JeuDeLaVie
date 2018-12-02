@@ -14,8 +14,8 @@
 #include "grille.h"
 #include "jeu.h"
 
-#define SIZEX 1000
-#define SIZEY 1000
+#define SIZEX 900
+#define SIZEY 1080
 
 //affichage d'un trait horizontal
 void affiche_trait (int c);
@@ -36,8 +36,9 @@ void efface_grille (grille g);
 //debute le jeu
 void debut_jeu(grille *g, grille *gc);
 
-void paint(cairo_surface_t *surface, grille g,int c, int v);
+void paint(cairo_surface_t *surface, grille g,int c, int v,int o);
 
-int paint_jeu(grille *g,grille *gc);
+void paint_jeu(grille *g, grille *gc);
 
 #endif
+

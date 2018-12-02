@@ -120,6 +120,14 @@ void evolue (grille *g, grille *gc, int s, int k ){
 	return;
 }
 
+/**
+ * calcul de periode d'une colonie oscillente
+ * \relatesalso grille
+ * \param s int
+ * \param v int
+ * \param g grille
+ * \returns la periode
+ */
 int oscillente(grille g,int s, int v)
 {
 	int k = 1;	
@@ -128,40 +136,62 @@ int oscillente(grille g,int s, int v)
 	alloue_grille(g.nbl,g.nbc,&g2);
 	copie_grille(g,g1);
 	copie_grille(g,g2);
-	evolue(&g,&g1,s,v);
-	while(equal(g,g2)==0 && k<1000)
+	evolue(&g1,&g2,s,v);
+	while(equal(g,g1)==0 && k<M)
 	{
-		evolue(&g,&g1,s,v);
+		evolue(&g1,&g2,s,v);
 		k++;
 	}
+	libere_grille(&g1);
+	libere_grille(&g2);
 	return k;
 }
 
+/**
+ * calcul si un colonie est oscillente ou pas
+ * \relatesalso grille
+ * \param s int
+ * \param v int
+ * \param g grille
+ * \returns 0 si pas oscillente, 1 si oscillente
+ */
 int oscillenteau(grille g,int s, int v)
 {
-	int k = 1,r=0;	
+	int k = 0,r=0;	
 	grille g1, g2;
 	alloue_grille(g.nbl,g.nbc,&g1);
 	alloue_grille(g.nbl,g.nbc,&g2);
 	copie_grille(g,g1);
 	copie_grille(g,g2);
-	evolue(&g,&g1,s,v);
-	while(equal(g,g2)==0 && k<1000)
+	evolue(&g1,&g2,s,v);
+	while(equal(g,g1)==0 && k<M)
 	{
-		evolue(&g,&g1,s,v);
+		evolue(&g1,&g2,s,v);
 		k++;
 	}
-	if(k==1000 || k==1)
+	if(k==M || k==0)
 	{
 		r = 0;
+		//printf("pas oscillent");
 	}
 	else
 	{
 		r = 1;
+		//printf("oscillent");
 	}
+	libere_grille(&g1);
+	libere_grille(&g2);
 	return r;
 }
 
+/**
+ * affichage si un colonie est oscillente ou pas
+ * \relatesalso grille
+ * \param s int
+ * \param v int
+ * \param g grille
+ * \returns nothing
+ */
 void oscillentedeux(grille g, int s, int v)
 {
 	int k =0,r=0;
@@ -170,59 +200,87 @@ void oscillentedeux(grille g, int s, int v)
 	alloue_grille(g.nbl,g.nbc,&g2);
 	copie_grille(g,g1);
 	copie_grille(g,g2);
-	evolue(&g,&g1,s,v);
-	while (k<1000 && r==0)
+	while (k<M && r==0)
 	{
 		r = oscillenteau(g1,s,v);
+		evolue(&g1,&g2,s,v);
 		k++;
 	}
 	if(r==0)
 	{
 		printf("jamais oscillente                                  \r");
 	}
-	else if(k != 1)
-	{
-		printf("va etre oscillente apres %d pas                    \r",k);
-	}
-	else
+	else if(k == 1)
 	{
 		printf("oscillente et son period est %d",oscillente(g,s,v));
 	}
+	else
+	{
+		//printf("oscillente et son period est %d",oscillente(g2,s,v));
+		printf("va etre oscillente apres %d pas                    \r",k);
+	}
 }
 
+/**
+ * calcul la type de colonie
+ * \relatesalso grille
+ * \param s int
+ * \param v int
+ * \param g grille
+ * \returns 0 si la colonie n'est pas oscillente,1 si il oscille jamais et 2 si il oscille
+ */
+int oscillentePaint(grille g, int s, int v)
+{
+	int k =0,r=0,q=0;
+	grille g1,g2;
+	alloue_grille(g.nbl,g.nbc,&g1);
+	alloue_grille(g.nbl,g.nbc,&g2);
+	copie_grille(g,g1);
+	copie_grille(g,g2);
+	while (k<M && r==0)
+	{
+		r = oscillenteau(g1, s,v);
+		evolue(&g1,&g2,s,v);
+		k++;
+	}
+	if(r==0)
+	{
+		q=0;
+	}
+	else if(k != 1)
+	{
+		q=1;
+	}
+	else
+	{
+		q=2;
+	}
+	libere_grille(&g1);
+	libere_grille(&g2);
+	return q;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * il calcul quand la colonie va etre oscillante
+ * \relatesalso grille
+ * \param s int
+ * \param v int
+ * \param g grille
+ * \returns dans combien pas la colonie va etre oscillante
+ */
+int oscillentetrois(grille g, int s, int v)
+{
+	int k =0,r=0;
+	grille g1, g2;
+	alloue_grille(g.nbl,g.nbc,&g1);
+	alloue_grille(g.nbl,g.nbc,&g2);
+	copie_grille(g,g1);
+	copie_grille(g,g2);
+	while (k<M && r==0)
+	{
+		r = oscillenteau(g1,s,v);
+		evolue(&g1,&g2,s,v);
+		k++;
+	}
+	return k-1;
+}

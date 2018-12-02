@@ -5,7 +5,7 @@
  */
 
 #include "io.h"
-
+int temps=0;
 
 
 /**
@@ -100,11 +100,7 @@ void debut_jeu(grille *g, grille *gc){
 				reset_age(*g);
 				break;
 			}
-			case 'p' :
-			{//test oscillente
-				oscillente(*g,s,v);
-				break;
-			}
+			
 			case 'o' :
 			{//test oscillente
 				oscillentedeux(*g,s,v);
@@ -116,7 +112,6 @@ void debut_jeu(grille *g, grille *gc){
 				efface_grille(*g);
 				printf("temps d'évolution: %d               ",k);
 				affiche_grille(*g);
-				//paint_jeu(g, gc);
 				printf("                                                 \r");
 				k++;
 				break;
@@ -131,10 +126,25 @@ void debut_jeu(grille *g, grille *gc){
 	}
 	return;	
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-void paint(cairo_surface_t *surface, grille g,int c, int v)
+
+
+
+/**
+ * affichage graphique
+ * \relatesalso grille
+ * \param g grille
+ * \param surface cairo_surface_t*
+ * \param c int
+ * \param v int
+ * \param o int
+ * \returns nothing
+ */
+void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
 {	
-	int CSIZE = 52,i,j,k=0;
+	int CSIZE = 52,i,j;
+	char temp[100];
+	sprintf(temp,"%d",temps);
+	
 	char age[2];
 	age[1]= '\n';  
 	// create cairo mask
@@ -180,43 +190,79 @@ void paint(cairo_surface_t *surface, grille g,int c, int v)
 	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
 	cairo_set_font_size(cr,0.5*CSIZE);
 	cairo_set_source_rgb(cr,1.0,1.0,1.0);
-	cairo_move_to(cr,30,(i+1)*52);
+	cairo_move_to(cr,30,(g.nbl+1)*52);
+	cairo_show_text(cr,"temps passe : ");
+	cairo_show_text(cr,temp);
+	cairo_move_to(cr,30,(g.nbl+2)*52);
 	if(v==0)
 	{	
-	cairo_show_text(cr,"vieillissement pas active");
+		cairo_show_text(cr,"vieillissement pas active");
 	}
 	else
 	{
-	cairo_show_text(cr,"vieillissement active");
+		cairo_show_text(cr,"vieillissement active");
 	}
-	i++;
+	
 	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
 	cairo_set_font_size(cr,0.5*CSIZE);
 	cairo_set_source_rgb(cr,1.0,1.0,1.0);
-	cairo_move_to(cr,30,(i+1)*52);
+	cairo_move_to(cr,30,(g.nbl+3)*52);
+	
 	if(c==0)
 	{	
-	cairo_show_text(cr,"non cyclique");
+		cairo_show_text(cr,"non cyclique");
 	}
 	else
 	{
-	cairo_show_text(cr,"cyclique");
+		cairo_show_text(cr,"cyclique");
+	}
+	cairo_select_font_face(cr,"serif",CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+	cairo_set_font_size(cr,0.5*52);
+	cairo_set_source_rgb(cr,1.0,1.0,1.0);
+	cairo_move_to(cr,30,(g.nbl+4)*52);
+	if(o == 1)
+	{
+		if(oscillentePaint(g,c,v)==0)
+		{			
+			cairo_show_text(cr,"jamais oscillente");
+		}
+		else if(oscillentePaint(g,c,v)==1)
+		{			
+			char dans[1000];
+			sprintf(dans,"%d",oscillentetrois(g,c,v));
+			cairo_show_text(cr,"va etre oscillente dans ");
+			cairo_show_text(cr,dans);
+		}
+		else if(oscillentePaint(g,c,v)==2)
+		{
+			char per[1000];
+			sprintf(per,"%d",oscillente(g,c,v));			
+			cairo_show_text(cr,"oscillente et sa periode est ");
+			cairo_show_text(cr,per);
+		}
 	}
 	cairo_destroy(cr); // destroy cairo mask
 }
 
 
 
-
-int paint_jeu(grille *g, grille *gc)
+/**
+ * debut jeu en graphique
+ * \relatesalso grille
+ * \param g grille*
+ * \param gc grille*
+ * \returns nothing
+ */
+void paint_jeu(grille *g, grille *gc)
 {
-	int s = 1, v = 0;	
+	int s = 1, v = 0, o = 0;	
 	// X11 display
 	Display *dpy;
 	Window rootwin;
 	Window win;
 	XEvent e;
 	int scr;
+	
 	
 	// init the display
 	if(!(dpy=XOpenDisplay(NULL)))
@@ -238,101 +284,57 @@ int paint_jeu(grille *g, grille *gc)
 	// create cairo surface
 	cairo_surface_t *cs; 
 	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), SIZEX, SIZEY);
-	printf("\n\n\n%d",XKeysymToKeycode(dpy, 'n'));	
+	//printf("\n\n\n%d",XKeysymToKeycode(dpy, 'r'));	
 	// run the event loop
 	while(1)
 	{
 		XNextEvent(dpy, &e);
 		if(e.type==Expose && e.xexpose.count<1)
 		{
-			paint(cs,*g,s,v);
+			paint(cs,*g,s,v,o);
 		
 		}
 		if(e.xbutton.button == 1)
 		{
 			evolue(g,gc,s,v);
-			paint(cs,*g,s,v);
+			temps++;
+			paint(cs,*g,s,v,o);
 		}	
+		
+		if(e.xkey.keycode == 32)//o
+		{
+			o = 1 - o;
+			paint(cs,*g,s,v,o);
+		}
 		if(e.xkey.keycode == 54)//c
 		{
 			s = 1 - s;
+			paint(cs,*g,s,v,o);
 		}
 		if(e.xkey.keycode == 55)//v
 		{
 			v = 1 - v;
+			paint(cs,*g,s,v,o);
+		}
+		if(e.xkey.keycode == 27)//r
+		{
+			reset_age(*g);
+			paint(cs,*g,s,v,o);
 		}
 		if(e.xkey.keycode == 57)//n
 		{
+			temps=0;
 			char n[30];
 			printf("                                 \rfichier grille : ");
 			scanf("%s",n);
 			init_grille_from_file(n,g);
 			alloue_grille (g->nbl, g->nbc, gc);
-			paint(cs,*g,s,v);
+			
+			paint(cs,*g,s,v,o);
 		}
 		else if(e.xbutton.button==3) break;
 	}
 
 	cairo_surface_destroy(cs); // destroy cairo surface
 	XCloseDisplay(dpy); // close the display
-	return 0;
 }
-
-
-
-/*
-else if(e.type == ButtonPress)
-		{
-			if(e.xbutton.button == 1)
-			{
-				
-			}
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

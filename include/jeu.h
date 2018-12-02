@@ -8,6 +8,8 @@
 #define __JEU_H
 
 #include "grille.h"
+#define M 100
+
 
 //modulo modifié pour traiter correctement les bords i=0 et j=0
 //dans le calcul des voisins avec bords cycliques
@@ -33,4 +35,9 @@ int oscillenteau(grille g,int s, int v);
 
 void oscillentedeux(grille g, int s, int v);
 
+int oscillentePaint(grille g, int s, int v);
+
+int oscillentetrois(grille g, int s, int v);
+
 #endif
+

@@ -58,6 +58,8 @@ void reset_age(grille g);
 //recopie gs dans gd (sans allocation)
 void copie_grille (grille gs, grille gd);
 
+
+//test egalite de deux grilles
 int equal(grille g, grille g1);
 
 #endif
