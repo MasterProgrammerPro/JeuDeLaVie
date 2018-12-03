@@ -254,6 +254,11 @@ void paint(cairo_surface_t *surface, grille g,int c, int v, int o)
  */
 void paint_jeu(grille *g, grille *gc)
 {
+	int SIZEX = g->nbc*CSIZE+60, SIZEY = (g->nbl+5)*CSIZE+30;
+	if (SIZEX<420)
+	{
+		SIZEX = 420;
+	}	
 	int s = 1, v = 0, o = 0;
 	// X11 display
 	Display *dpy;
@@ -328,7 +333,9 @@ void paint_jeu(grille *g, grille *gc)
 			scanf("%s",n);
 			init_grille_from_file(n,g);
 			alloue_grille (g->nbl, g->nbc, gc);
-			paint(cs,*g,s,v,o);
+			cairo_surface_destroy(cs);
+			XCloseDisplay(dpy);
+			return paint_jeu(g,gc);
 		}
 		else if(e.xbutton.button==3) break;
 	}

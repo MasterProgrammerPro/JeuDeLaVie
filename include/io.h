@@ -14,8 +14,8 @@
 #include "grille.h"
 #include "jeu.h"
 
-#define SIZEX 540
-#define SIZEY 620
+//#define SIZEX 540
+//#define SIZEY 620
 #define CSIZE 40
 
 //affichage d'un trait horizontal
